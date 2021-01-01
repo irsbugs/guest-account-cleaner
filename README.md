@@ -19,7 +19,8 @@ The Ubuntu Mate 20.04 desktop is used in the following example of creating a Gue
 
 ## Adding the Account Cleaning Capability.
 
-* Log into the Guest account,
+* Log into the Guest account.
+* Use the Firefox web-browser to connect to this github repository. I.e. 
 
 
 
