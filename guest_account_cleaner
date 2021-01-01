@@ -100,6 +100,8 @@ def main():
     Main functions to clean out unwanted files and folders in the guest account.
     """
     check_account()
+        
+    backup_files()    
     
     folder_list = create_folder_list()
     # print(folder_list)
