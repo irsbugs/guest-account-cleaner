@@ -24,7 +24,7 @@ The Ubuntu Mate 20.04 desktop is used in the following example of creating a Gue
 * Set Firefox so it displays its Menu bar. I.e. Right click near the top of the Firefox window and in drop down menu select *Menu Bar*.
 * Click on the python file *guest_account_cleaner*
 * Click on the *Raw" icon.
-* With the web-browser now displaying teh contents of the file, on the Main Menu bar, click on File --> Save Page As.
+* With the web-browser now displaying the contents of the file, on the Main Menu bar, click on File --> Save Page As.
 * When prompted for a location to save the file select the *home* folder of the guest account.
 * Before saving the file, place a dot at the beginning of the file name. E.g. .guest_account_cleaner.
 * Click on **Save**.
