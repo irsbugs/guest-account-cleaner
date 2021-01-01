@@ -27,11 +27,50 @@ The Ubuntu Mate 20.04 desktop is used in the following example of creating a Gue
 * When prompted for a location to save the file select the *home* folder of the guest account.
 * Before saving the file, place a dot at the beginning of the file name. E.g. .guest_account_cleaner.
 * Click on **Save**.
+* Open a terminal session in the home folder of the Guest account.
+* Check the file exists as a hidden file...
+```
+$ ls -lA .guest_account_cleaner
+-rw-rw-r-- 1 ian ian 3750 Jan  2 10:41 .guest_account_cleaner
+```
+* Make the file executable...
+```
+$ chmod +x .guest_account_cleaner
+$ ls -lA .guest_account_cleaner
+-rwxrwxr-x 1 ian ian 3750 Jan  2 10:41 .guest_account_cleaner
+```
+* Review the file so that the last lines of the file can be copied...
+```
+$ cat .guest_account_cleaner
+#!/usr/bin/env python3
+#
+# .guest_account_cleaner
+# Deletes all non-hidden files in the Guest account.
 
+--- missing text ---
 
+The following is added to the end of the file /home/guest/.profile
 
-
-
-
+# Run python script to clean out the Guest directory
+# Added by:           date:
+if [ -f ~/.guest_account_cleaner ]; then
+    python3 ~/.guest_account_cleaner
+fi
+        
+"""
+```
+* Launch an editor, for example pluma, to edit the .profile file...
+```
+$ pluma .profile
+```
+* Paste the following at the end of the .profile file and add your name and the date...
+```
+# Run python script to clean out the Guest directory
+# Added by: Ian          date: 2021-01-01
+if [ -f ~/.guest_account_cleaner ]; then
+    python3 ~/.guest_account_cleaner
+fi
+```
+* The Guest account is now be ready to be used.
 
 
