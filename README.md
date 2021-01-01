@@ -95,7 +95,7 @@ def restore_files():
 ```
 These functions current contain sample code that will backup the *guest/Desktop/Network.desktop* file, if it exists, to the /tmp folder. Later, after cleaning up of the guest directory has been completed, then it will restore the file from the /tmp folder and place it in the guest/Desktop folder.
 
-This is the example code that perforom the backup...
+This is the example code that performs the backup...
 ```
     # If Desktop/Network.desktop exists copy to /tmp
     if os.path.isfile(homedir + "Desktop/Network.desktop"): 
