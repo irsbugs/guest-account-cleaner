@@ -1,0 +1,139 @@
+#!/usr/bin/env python3
+#
+# .guest_account_cleaner
+# Deletes all non-hidden files in the Guest account.
+# Deletes non-hidden folders and their tree of folders and files.
+# Adds back the default set of folders. E.g. Documents, Downloads, Pictures, etc.
+# Provision for a Desktop icon to be backed-up and restored.
+#
+# This program is called by /home/guest/.profile
+# Save this file in /home/guest folder.
+# If necessary, rename this file so it is hidden and starts with a dot. E.g 
+# $ cp guest_account_cleaner .guest_account_cleaner
+# Set file to be executable with $ chmod + x /home/guest/.guest_account_cleaner
+#
+# Ian Stewart 2021-1-1 Copyright CC0
+#
+import shutil
+import os
+import getpass
+import sys
+
+ACCOUNT_NAME = "guest"
+
+homedir = os.path.expanduser("~") + os.sep
+#print(homedir) #/home/guest/
+#print(getpass.getuser()) # guest 
+#print(os.getcwd()) # /home/guest
+
+default_folder_list = ["Desktop", "Documents", "Downloads", "Music", "Pictures"
+        "Public", "snap", "Templates", "Videos"]
+
+def check_account():
+    """
+    Only run if the program is in the guest account.        
+    """
+    if getpass.getuser() != ACCOUNT_NAME:
+        sys.exit(".guest_account_clean.py was not run from {} account."
+                .format(ACCOUNT_NAME))
+
+
+def backup_files():
+    """
+    Backup. Copy non-hidden file(s) to be kept to the /tmp folder.
+    """
+    # If Desktop/Network.desktop exists copy to /tmp
+    if os.path.isfile(homedir + "Desktop/Network.desktop"): 
+        shutil.copy2(homedir + "Desktop/Network.desktop", "/tmp/Network.desktop")
+
+
+def create_folder_list():
+    """
+    Create a list of all folders in the home directory that do not start with 
+    a dot.
+    """
+    return [f.name for f in os.scandir() if f.is_dir() and 
+                                      not f.name.startswith('.')]
+
+
+def create_file_list():
+    """
+    Create a list of all files in the home directory that do not start with 
+    a dot.
+    """
+    return [f.name for f in os.scandir() if f.is_file() and 
+                                      not f.name.startswith('.')]
+
+
+def delete_folders_and_files(folder_list, file_list):
+    """
+    Remove all folders and files that are not hidden.
+    """
+    # Remove all folders and their subfolders and files, etc.
+    for folder in folder_list:
+        shutil.rmtree(folder)
+    
+    # Remove all files in home directory, except if they begin with "."       
+    for file in file_list:
+        os.remove(file)
+
+
+def restore_default_folders():
+    """
+    Restore the default folders to the home directory.
+    """
+    for folder in default_folder_list:
+        os.makedirs(folder)
+
+    
+def restore_files():
+    """
+    Restore file(s) backed up to /tmp.
+    """   
+    # If Network.desktop exists in /tmp copy to ~/Desktop 
+    if os.path.isfile("/tmp/Network.desktop"):
+        shutil.copy2("/tmp/Network.desktop", homedir + "Desktop/Network.desktop")
+
+
+def main():
+    """
+    Main functions to clean out unwanted files and folders in the guest account.
+    """
+    check_account()
+    
+    folder_list = create_folder_list()
+    # print(folder_list)
+
+    file_list = create_file_list()
+    #print(file_list)
+
+    delete_folders_and_files(folder_list, file_list)
+
+    restore_default_folders()
+    
+    restore_files()
+
+    sys.exit()
+
+if __name__ == "__main__":
+
+    main()
+
+"""
+Notes:
+
+Tested on Ubuntu Mate 20.04.1
+
+.profile calls .bashrc, with the following restrictions...
+# This file is not read by bash(1), if ~/.bash_profile or ~/.bash_login exists.
+
+
+The following is added to the end of the file /home/guest/.profile
+
+# Run python script to clean out the Guest directory
+# Added by:           date:
+if [ -f ~/.guest_account_cleaner ]; then
+    python3 ~/.guest_account_cleaner
+fi
+        
+"""
