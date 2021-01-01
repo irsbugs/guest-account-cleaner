@@ -21,6 +21,7 @@ The Ubuntu Mate 20.04 desktop is used in the following example of creating a Gue
 
 * Log into the Guest account.
 * Use the Firefox web-browser to connect to this github repository. I.e. https://github.com/irsbugs/guest-account-cleaner
+* Set Firefox so it displays its Manu bar. I.e. Right click near the top of the Firefox window and in drop down menu select *Menu Bar*.
 * Click on the python file *guest_account_cleaner*
 * Click on the *Raw" icon.
 * With the web-browser now displaying teh contents of the file, on the Main Menu bar, click on File --> Save Page As.
@@ -66,7 +67,7 @@ $ pluma .profile
 * Paste the following at the end of the .profile file and add your name and the date...
 ```
 # Run python script to clean out the Guest directory
-# Added by: Ian          date: 2021-01-01
+# Added by: Ian - 2021-01-01
 if [ -f ~/.guest_account_cleaner ]; then
     python3 ~/.guest_account_cleaner
 fi
@@ -74,3 +75,46 @@ fi
 * The Guest account is now be ready to be used.
 
 
+## Testing
+
+### Removal of folder and files...
+
+* Create *test.txt* file in guest/home folder.
+* Create a folder in guest/home called *test*. In this test folder create a file called *test.txt*
+* In the Documents folder create a file called *test.txt*
+* Now log out of Guest and log back in. The folder test and all files named test.txt should no longer exist.
+
+### Preventing a file from being deleted...
+
+Maybe there is a file you want to always exist in the *guest/Desktop* folder. For example the Firefox launcher can be dragged and dropped onto the desktop. This will provide a file called *guest/Desktop/firefox.desktop*. The desktop icon is renamed *Network*. Thus the file becomes renamed as *guest/Desktop/Network.desktop*.
+
+The *.guest_account_cleaner* python program contains two functions:
+```
+def backup_files():
+def restore_files():
+```
+These functions current contain sample code that will backup the *guest/Desktop/Network.desktop* file, if it exists, to the /tmp folder. Later, after cleaning up of the guest directory has been completed, then it will restore the file from the /tmp folder and place it in the guest/Desktop folder.
+
+This is the example code that perforom the backup...
+```
+    # If Desktop/Network.desktop exists copy to /tmp
+    if os.path.isfile(homedir + "Desktop/Network.desktop"): 
+        shutil.copy2(homedir + "Desktop/Network.desktop", "/tmp/Network.desktop")
+```
+
+This is the exmaple code that performs the restore...
+```
+    # If Network.desktop exists in /tmp copy to ~/Desktop 
+    if os.path.isfile("/tmp/Network.desktop"):
+        shutil.copy2("/tmp/Network.desktop", homedir + "Desktop/Network.desktop")
+```
+
+If you have some particular file that should remain in the guest account between logging out and logging back in, then modify these two functions in the .guest_account_cleaner file to meet your requirements.
+
+
+
+
+
+
+
+* Drag and drop the 
