@@ -1,4 +1,4 @@
-# guest-account-cleaner
+# Guest Account Cleaner
 
 Ubuntu Desktop distros have a *Users and Groups* GUI utility to create new user accounts. For example a *Guest* account may be created. In the Guest account the user may download or create folders and files. At the end of the users session it may be desirable to remove all these files so the Guest account is in a clean state for the next Guest user.
 
