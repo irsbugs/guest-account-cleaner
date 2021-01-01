@@ -110,11 +110,3 @@ This is the exmaple code that performs the restore...
 ```
 
 If you have some particular file that should remain in the guest account between logging out and logging back in, then modify these two functions in the .guest_account_cleaner file to meet your requirements.
-
-
-
-
-
-
-
-* Drag and drop the 
