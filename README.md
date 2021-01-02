@@ -1,6 +1,6 @@
 # Guest Account Cleaner
 
-Ubuntu Desktop distros have a *Users and Groups* GUI utility to create new user accounts. For example a *Guest* account may be created. In the Guest account the user may download or create folders and files. At the end of the users session it may be desirable to remove all these files so the Guest account is in a clean state for the next Guest user.
+Ubuntu Desktop distros have a *Users and Groups* GUI utility to create new user accounts. For example a *Guest* account may be created. In the Guest account the user may download or create folders and files. At the end of the users session it may be desirable to remove all these files so the Guest account is in a clean state for the next Guest user. Adding a hidden python script file to the *Guest* home directory and using the *.profile* file to run this python script will clean out the unwanted files. 
 
 ## Creating a Guest Account
 
@@ -24,9 +24,9 @@ The Ubuntu Mate 20.04 desktop is used in the following example of creating a Gue
 * Set Firefox so it displays its Menu bar. I.e. Right click near the top of the Firefox window and in drop down menu select *Menu Bar*.
 * Click on the python file *guest_account_cleaner*
 * Click on the *Raw" icon.
-* With the web-browser now displaying the contents of the file, on the Main Menu bar, click on File --> Save Page As.
+* With the web-browser now displaying the contents of the file, on the Main Menu bar, click on File... --> Save Page As...
 * When prompted for a location to save the file select the *home* folder of the guest account.
-* Before saving the file, place a dot at the beginning of the file name. E.g. .guest_account_cleaner.
+* Before saving the file, place a dot at the beginning of the file name. E.g. .guest_account_cleaner. This makes the file hidden.
 * Click on **Save**.
 * Open a terminal session in the home folder of the Guest account.
 * Check the file exists as a hidden file...
