@@ -34,7 +34,7 @@ def check_account():
     Only run if the program is in the guest account.        
     """
     if getpass.getuser() != ACCOUNT_NAME:
-        sys.exit(".guest_account_clean.py was not run from {} account."
+        sys.exit(".guest_account_clean was not run from {} account."
                 .format(ACCOUNT_NAME))
 
 
