@@ -20,7 +20,7 @@ The Ubuntu Mate 20.04 desktop is used in the following example of creating a Gue
 ## Adding the Account Cleaning Capability.
 
 * Log into the Guest account.
-* Use the Firefox web-browser to connect to this github repository. I.e. https://github.com/irsbugs/guest-account-cleaner
+* Use the Firefox web-browser to connect to this github repository: https://github.com/irsbugs/guest-account-cleaner
 * Set Firefox so it displays its Menu bar. I.e. Right click near the top of the Firefox window and in drop down menu select *Menu Bar*.
 * Click on the python file *guest_account_cleaner*
 * Click on the *Raw" icon.
