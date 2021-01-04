@@ -8,7 +8,7 @@
 #
 # This program is called by /home/guest/.profile
 # Save this file in /home/guest folder.
-# If necessary, rename this file so it is hidden and starts with a dot. E.g 
+# It is necessary to rename this file so it is hidden and starts with a dot. E.g 
 # $ cp guest_account_cleaner .guest_account_cleaner
 # Set file to be executable with $ chmod + x /home/guest/.guest_account_cleaner
 #
@@ -124,13 +124,13 @@ if __name__ == "__main__":
 """
 Notes:
 
-Tested on Ubuntu Mate 20.04.1
+Tested on Ubuntu Mate 20.04.1 and Linux Mint 20 Mate.
 
 .profile calls .bashrc, with the following restrictions...
 # This file is not read by bash(1), if ~/.bash_profile or ~/.bash_login exists.
 
 
-The following is added to the end of the file /home/guest/.profile
+The following five lines are added to the end of the file /home/guest/.profile
 
 # Run python script to clean out the Guest directory
 # Added by:           date:
