@@ -10,7 +10,7 @@
 # Save this file in /home/guest folder.
 # It is necessary to rename this file so it is hidden and starts with a dot. E.g 
 # $ cp guest_account_cleaner .guest_account_cleaner
-# Set file to be executable with $ chmod + x /home/guest/.guest_account_cleaner
+# Set file to be executable with $ chmod +x /home/guest/.guest_account_cleaner
 #
 # Ian Stewart 2021-1-1 Copyright CC0
 #
@@ -26,7 +26,7 @@ homedir = os.path.expanduser("~") + os.sep
 #print(getpass.getuser()) # guest 
 #print(os.getcwd()) # /home/guest
 
-default_folder_list = ["Desktop", "Documents", "Downloads", "Music", "Pictures"
+default_folder_list = ["Desktop", "Documents", "Downloads", "Music", "Pictures",
         "Public", "snap", "Templates", "Videos"]
 
 def check_account():
